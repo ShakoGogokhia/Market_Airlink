@@ -27,6 +27,7 @@ const productCards = [
 
 export default function Header() {
     const [language, setLanguage] = useState('ქარ');
+    const [authModal, setAuthModal] = useState(null);
 
     const languages = [
         {
@@ -64,7 +65,11 @@ export default function Header() {
     );
   };
 
-  
+  const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
+
+const handleLogin = () => setAuthModal('login');
+const handleRegister = () => setAuthModal('register');
 
 
   const handleImageClick = (index) => {
@@ -116,14 +121,14 @@ export default function Header() {
               <FaShoppingCart className="text-gray-600 cursor-pointer border w-7 h-7" />
 
               <div className="">
-                <button className=" px-4 py-2 rounded hover:color-red-400 transition duration-200">
-                  შესვლა
-                </button>
-                <span>/</span>
-                <button className="text-black px-4 py-2 rounded hover:collor-red-400 transition duration-200">
-                  რეგისტრაცია
-                </button>
+              <button onClick={handleLogin}>Login</button>
+              <span>/</span>
+              <button onClick={handleRegister}>Register</button>
+
+
               </div>
+
+
             </div>
           </div>
         </div>
@@ -218,9 +223,11 @@ export default function Header() {
         </div>
       </div>
 
+
   
 
             <div className="group e flex items-center gap-2">
+              
               <a href="#" className="hover:underline">უსაფრთხოების სისტემები</a>
               <div className="absolute left-0 right-0 top-full bg-white text-black shadow-md mt-1 z-50 hidden group-hover:block">
                 <div className="max-w-screen-xl mx-auto px-4 py-4 grid grid-cols-5 gap-4">
@@ -284,72 +291,87 @@ export default function Header() {
           </div>
         </div>
       </header>
-      <div className="relative mt-8">
-        <div className="flex justify-center items-center">
-          <button
-            onClick={handlePrev}
-            className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          >
-            &lt;
-          </button>
 
-          <img
-            src={carouselImages[currentIndex]}
-            alt={`Carousel Image ${currentIndex}`}
-            className="h-90 object-cover border rounded-lg shadow-lg"
-            onClick={() => handleImageClick(currentIndex)}
-          />
+            {/* //register and login modal */}
+                  <div>
+                  {authModal === 'login' && <Login onClose={() => setAuthModal(null)} />}
+                  {authModal === 'register' && <Register onClose={() => setAuthModal(null)} />}
+                  </div>
+                  {!authModal && (
+              <>
+                {/* CAROUSEL */}
+                <div className="relative mt-8">
+                  <div className="flex justify-center items-center">
+                    <button
+                      onClick={handlePrev}
+                      className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                    >
+                      &lt;
+                    </button>
 
-          <button
-            onClick={handleNext}
-            className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
-          >
-            &gt;
-          </button>
-        </div>
-      </div>
-      <div className="flex justify-center items-center mt-8">
-      <div className="flex justify-center items-center mt-8">
-        <div className="grid grid-cols-3 gap-4 w-full max-w-screen-lg">
-            {[categories[0], ...categories.slice(1)].map((category, index) => (
-            <div
-                key={index}
-                className="relative h-64 rounded-lg shadow-lg bg-cover bg-center flex items-center"
-                style={{ backgroundImage: `url(${category.image})` }}
-            >
-                <div className="absolute inset-0 bg-opacity-40 rounded-lg" />
+                    <img
+                      src={carouselImages[currentIndex]}
+                      alt={`Carousel Image ${currentIndex}`}
+                      className="h-90 object-cover border rounded-lg shadow-lg"
+                      onClick={() => handleImageClick(currentIndex)}
+                    />
 
-                <div className="relative z-10 px-4 text-black text-left">
-                <span className="text-xl font-semibold">{category.name}</span>
+                    <button
+                      onClick={handleNext}
+                      className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full"
+                    >
+                      &gt;
+                    </button>
+                  </div>
                 </div>
-            </div>
-            ))}
-        </div>
-        </div>
 
+                {/* CATEGORY BLOCK */}
+                <div className="flex justify-center items-center mt-8">
+                  <div className="grid grid-cols-3 gap-4 w-full max-w-screen-lg">
+                    {[categories[0], ...categories.slice(1)].map((category, index) => (
+                      <div
+                        key={index}
+                        className="relative h-64 rounded-lg shadow-lg bg-cover bg-center flex items-center"
+                        style={{ backgroundImage: `url(${category.image})` }}
+                      >
+                        <div className="absolute inset-0 bg-opacity-40 rounded-lg" />
+                        <div className="relative z-10 px-4 text-black text-left">
+                          <span className="text-xl font-semibold">{category.name}</span>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
 
-      </div>
-      <div className="flex justify-center items-center mt-8 px-4">
-        <div className="bg-gray-300 py-4 px-6 rounded-lg shadow-lg text-center w-full max-w-screen-lg">
-          <h2 className="text-xl font-bold mb-4">ახალი პროდუქტები</h2>
-          <div className="grid grid-cols-4 gap-4">
-            {productCards.map((product, index) => (
-              <div key={index} className="bg-gray-200 p-4 rounded-lg shadow-lg text-center">
-                <img src={product.image} alt={product.name} className="w-full h-32 object-cover rounded-lg mb-2" />
-                <h3 className="text-lg font-semibold">{product.name}</h3>
-                <p className="text-sm text-gray-600">{product.model}</p>
-                <p className="text-lg font-bold">{product.price}</p>
-                <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full">
-                  Add to Cart
-                </button>
-                <p className={`mt-2 text-sm ${product.inStock ? 'text-green-500' : 'text-red-500'}`}>
-                  {product.inStock ? 'In Stock' : 'Out of Stock'}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
+                {/* PRODUCT CARDS */}
+                <div className="flex justify-center items-center mt-8 px-4">
+                  <div className="bg-gray-300 py-4 px-6 rounded-lg shadow-lg text-center w-full max-w-screen-lg">
+                    <h2 className="text-xl font-bold mb-4">ახალი პროდუქტები</h2>
+                    <div className="grid grid-cols-4 gap-4">
+                      {productCards.map((product, index) => (
+                        <div key={index} className="bg-gray-200 p-4 rounded-lg shadow-lg text-center">
+                          <img
+                            src={product.image}
+                            alt={product.name}
+                            className="w-full h-32 object-cover rounded-lg mb-2"
+                          />
+                          <h3 className="text-lg font-semibold">{product.name}</h3>
+                          <p className="text-sm text-gray-600">{product.model}</p>
+                          <p className="text-lg font-bold">{product.price}</p>
+                          <button className="mt-2 bg-blue-500 text-white px-4 py-2 rounded-full">
+                            Add to Cart
+                          </button>
+                          <p className={`mt-2 text-sm ${product.inStock ? 'text-green-500' : 'text-red-500'}`}>
+                            {product.inStock ? 'In Stock' : 'Out of Stock'}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              </>
+            )}
+
 
       <footer className="bg-gray-800 text-white py-8">
             <div className="max-w-screen-xl mx-auto px-4">
