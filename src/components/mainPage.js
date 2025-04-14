@@ -379,28 +379,28 @@ export default function Header() {
 
       {showBody && (
         <div className="BODY">
-          {/* Carousel Section */}
-          <div className="relative mt-8">
-            <div className="flex justify-center items-center">
-              <button
-                onClick={handlePrev}
-                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
-              >
-                &lt;
-              </button>
+          <div className="relative mt-8 flex justify-center">
+            <div className="relative">
               <img
                 src={carouselImages[currentIndex]}
                 alt={`Carousel Image ${currentIndex}`}
-                className="h-120 w-full object-cover border rounded-lg shadow-lg" 
+                className="h-120 object-cover border rounded-lg shadow-lg"
               />
               <button
+                onClick={handlePrev}
+                className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75 transition"
+              >
+                &lt;
+              </button>
+              <button
                 onClick={handleNext}
-                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-gray-800 text-white p-2 rounded-full z-10"
+                className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 text-white p-2 rounded-full z-10 hover:bg-opacity-75 transition"
               >
                 &gt;
               </button>
             </div>
           </div>
+
 
           <div className="flex justify-center items-center mt-8">
             <div className="grid grid-cols-3 gap-4 w-full max-w-screen-lg">
