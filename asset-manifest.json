@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/Market_Airlink/static/css/main.b478d1e2.css",
-    "main.js": "/Market_Airlink/static/js/main.225ff139.js",
+    "main.js": "/Market_Airlink/static/js/main.4b133b64.js",
     "static/js/453.bea910c8.chunk.js": "/Market_Airlink/static/js/453.bea910c8.chunk.js",
     "index.html": "/Market_Airlink/index.html",
     "main.b478d1e2.css.map": "/Market_Airlink/static/css/main.b478d1e2.css.map",
-    "main.225ff139.js.map": "/Market_Airlink/static/js/main.225ff139.js.map",
+    "main.4b133b64.js.map": "/Market_Airlink/static/js/main.4b133b64.js.map",
     "453.bea910c8.chunk.js.map": "/Market_Airlink/static/js/453.bea910c8.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.b478d1e2.css",
-    "static/js/main.225ff139.js"
+    "static/js/main.4b133b64.js"
   ]
 }
