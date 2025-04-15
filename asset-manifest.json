@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Market_Airlink/static/css/main.71de30d8.css",
-    "main.js": "/Market_Airlink/static/js/main.f14a1a78.js",
+    "main.css": "/Market_Airlink/static/css/main.5541bc82.css",
+    "main.js": "/Market_Airlink/static/js/main.49a5e3fd.js",
     "static/js/453.bea910c8.chunk.js": "/Market_Airlink/static/js/453.bea910c8.chunk.js",
     "static/media/GENERALTECHNOLOGYLOGO.png": "/Market_Airlink/static/media/GENERALTECHNOLOGYLOGO.0c06992e466af5de656c.png",
     "index.html": "/Market_Airlink/index.html",
-    "main.71de30d8.css.map": "/Market_Airlink/static/css/main.71de30d8.css.map",
-    "main.f14a1a78.js.map": "/Market_Airlink/static/js/main.f14a1a78.js.map",
+    "main.5541bc82.css.map": "/Market_Airlink/static/css/main.5541bc82.css.map",
+    "main.49a5e3fd.js.map": "/Market_Airlink/static/js/main.49a5e3fd.js.map",
     "453.bea910c8.chunk.js.map": "/Market_Airlink/static/js/453.bea910c8.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.71de30d8.css",
-    "static/js/main.f14a1a78.js"
+    "static/css/main.5541bc82.css",
+    "static/js/main.49a5e3fd.js"
   ]
 }
