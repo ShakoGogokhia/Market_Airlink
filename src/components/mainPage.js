@@ -5,7 +5,10 @@ import { IoSearch } from 'react-icons/io5';
 import Login from './LoginForm';
 import Register from './RegisterForm';
 import EnergyProduct from './HeaderProducts/energyProduct.js';
+import Company  from './HeaderProducts/Company.js';
+import Contact from './HeaderProducts/Contact.js';
 import Cart from './HeaderProducts/Cart.js';
+import logo from '../Images/Logo/GENERALTECHNOLOGYLOGO.png';
 
 
 const categories = [
@@ -35,6 +38,8 @@ export default function Header() {
   const [showEnergyProduct, setShowEnergyProduct] = useState(false);
   const [showBody, setShowBody] = useState(true);
   const [showCart, setShowCart] = useState(false);
+  const [showCompany, setShowCompany] = useState(false);
+  const [showContact, setShowContact] = useState(false);
 
   const languages = [
     {
@@ -80,13 +85,17 @@ export default function Header() {
     e.preventDefault();
     setShowBody(false);
     setShowLogin(true);
+    setShowContact(false);
     setShowRegister(false);
+    setShowCompany(false);
     setShowEnergyProduct(false);
   };
 
   const handleRegisterClick = (e) => {
     e.preventDefault();
     setShowBody(false);
+    setShowContact(false);
+    setShowCompany(false);
     setShowRegister(true);
     setShowLogin(false);
     setShowEnergyProduct(false);
@@ -95,6 +104,8 @@ export default function Header() {
   const handleEnergyClick = (e) => {
     e.preventDefault();
     setShowBody(false);
+    setShowContact(false);
+    setShowCompany(false);
     setShowEnergyProduct(true);
     setShowLogin(false);
     setShowRegister(false);
@@ -102,11 +113,32 @@ export default function Header() {
   const handleCartClick = (e) => {
     e.preventDefault();
     setShowBody(false);
+    setShowContact(false);
+    setShowCompany(false);
     setShowCart(true);
     setShowLogin(false);
     setShowRegister(false);
     setShowEnergyProduct(false);
   };
+  const handleCompanyClick = (e) => {
+    e.preventDefault();
+    setShowBody(false);
+    
+    setShowCompany(true);
+    setShowContact(false);
+    setShowEnergyProduct(false);
+    setShowLogin(false);
+    setShowRegister(false);
+  }
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    setShowBody(false);
+    setShowContact(true);
+    setShowCompany(false);
+    setShowEnergyProduct(false);
+    setShowLogin(false);
+    setShowRegister(false);
+  }
 
   return (
     <div className=''>
@@ -118,18 +150,18 @@ export default function Header() {
             onClick={() => window.location.reload()}
           >
             <img 
-              src="https://cdn.vectorstock.com/i/500p/56/81/gear-and-wrench-icon-service-support-logo-vector-20755681.jpg" 
+              src={logo} 
               alt="Logo" 
-              className="h-8" 
+              className="h-10 w-30" 
             />
-            <span className="text-lg font-bold text-gray-800">My Market</span>
+            <span className="text-lg font-bold text-gray-800">General Technology</span>
           </div>
 
             <nav className="flex items-center gap-6 text-sm text-gray-800">
-              <a href="#" className="hover:underline">პროექტები</a>
+              <a onClick={handleCompanyClick} className='hover:underline'>კომპანია</a>
+              <a href="#" className="hover:underline">პირობები <span className="text-red-600 font-bold"></span></a>
               <a href="#" className="hover:underline">ვაკანსია <span className="text-red-600 font-bold"></span></a>
-              <a href="#" className="hover:underline">ტრენინგები <span className="text-red-600 font-bold"></span></a>
-              <a href="#" className="hover:underline">კონტაქტი</a>
+              <a onClick={handleContactClick} href="#" className="hover:underline">კონტაქტი</a>
             </nav>
             <div className="flex items-center gap-4">
               <div className="relative inline-block">
@@ -152,10 +184,10 @@ export default function Header() {
                   ))}
                 </select>
               </div>
-              <FaHeart className="text-gray-600 cursor-pointer border w-7 h-7 rounded" />
+              <FaHeart className="text-gray-600 cursor-pointer  w-7 h-7 rounded" />
               <FaShoppingCart 
                 onClick={handleCartClick}
-                className="text-gray-600 cursor-pointer border w-7 h-7" 
+                className="text-gray-600 cursor-pointer  w-7 h-7" 
               />
               <div className="">
                 <button 
@@ -375,6 +407,19 @@ export default function Header() {
             <Cart />
           </div>
         )}
+                {!showBody && showContact && (
+          <div className="p-6">
+            <Contact />
+          </div>
+          
+        )}
+
+      {!showBody && showCompany && (
+                <div className="p-6">
+                  <Company />
+                </div>
+                
+        )}
       </div>
 
       {showBody && (
@@ -402,7 +447,7 @@ export default function Header() {
           </div>
 
 
-          <div className="flex justify-center items-center mt-8">
+          <div className="flex justify-center items-center mt-8 ">
             <div className="grid grid-cols-3 gap-4 w-full max-w-screen-lg">
               {categories.map((category, index) => (
                 <div
@@ -420,7 +465,7 @@ export default function Header() {
           </div>
 
           <div className="flex justify-center items-center mt-8 px-4">
-            <div className="bg-gray-300 py-4 px-6 rounded-lg shadow-lg text-center w-full max-w-screen-lg">
+            <div className="bg-gray-300 py-4 px-6 rounded-lg shadow-lg text-center  max-w-screen-lg">
               <h2 className="text-xl font-bold mb-4">ახალი პროდუქები</h2>
               <div className="grid grid-cols-4 gap-4">
                 {productCards.map((product, index) => (
@@ -493,6 +538,7 @@ export default function Header() {
             </div>
           </div>
           <div className="border-t border-gray-700 mt-8 pt-4 text-center text-sm">
+            @2025 General Technology. All rights reserved.
           </div>
         </div>
       </footer>
